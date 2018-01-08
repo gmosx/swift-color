@@ -115,8 +115,9 @@ extension Color: CustomStringConvertible {
     /// Returns a debug friendly description of this color. The string contains
     /// both a relative and literal representation as well as the associated hexValue
     public var description: String {
-        let color = literalRGBA()
-        return "(\(color.red), \(color.green), \(color.blue), \(rgba.alpha)) \(toHex(withAlpha: true))"
+        // let color = literalRGBA()
+        // return "(\(color.red), \(color.green), \(color.blue), \(rgba.alpha)) \(toHex(withAlpha: true))"
+        return "#\(toHex(withAlpha: false))"
     }
 }
 
