@@ -5,62 +5,50 @@ public extension Color {
     public typealias HSL = (hue: Float, saturation: Float, lightness: Float)
     public typealias HSLA = (hue: Float, saturation: Float, lightness: Float, alpha: Float)
 
-    public var hsla: HSLA {
-//        r /= 255, g /= 255, b /= 255;
-//
-//        var max = Math.max(r, g, b), min = Math.min(r, g, b);
-//        var h, s, l = (max + min) / 2;
-//
-//        if (max == min) {
-//            h = s = 0; // achromatic
-//        } else {
-//            var d = max - min;
-//            s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-//
-//            switch (max) {
-//            case r: h = (g - b) / d + (g < b ? 6 : 0); break;
-//            case g: h = (b - r) / d + 2; break;
-//            case b: h = (r - g) / d + 4; break;
-//            }
-//
-//            h /= 6;
-//        }
-//
-//        return [ h, s, l ];
+//    public init(hue: Float, saturation: Float, lightness: Float, alpha: Float = 1) {
+//    }
 
+    // L = (M + m) / 2
+    public var hsla: HSLA {
         let (red, green, blue, alpha) = rgba
 
-        let maxValue = max(red, green, blue)
-        let minValue = min(red, green, blue)
+        let maximum = max(red, green, blue)
+        let minimum = min(red, green, blue)
+        let chroma = maximum - minimum
 
         let hue: Float
         let saturation: Float
-        let lightness = (maxValue + minValue) / 2
+        let lightness: Float
 
-        if maxValue == minValue {
-            // Achromatic
+        print(maximum, minimum, red, green, blue)
+        lightness = (maximum + minimum) / 2
+
+        if chroma == 0 {
             hue = 0.0
             saturation = 0.0
         } else {
-            let delta = maxValue - minValue
+            saturation = lightness > 0.5 ? chroma / (2 - maximum - minimum) : chroma / (maximum + minimum)
 
-            saturation = lightness > 0.5 ? delta / (2 - maxValue - minValue) : delta / (maxValue + minValue)
-
-            switch maxValue {
+            switch maximum {
             case red:
-                hue = (green - blue) / delta + (green < blue ? 6 : 0)
+                hue = (green - blue) / chroma + (green < blue ? 6 : 0)
 
             case green:
-                hue = (blue - red) / delta + 2
+                hue = (blue - red) / chroma + 2
 
             case green:
-                hue = (red - green) / delta + 4
+                hue = (red - green) / chroma + 4
 
             default:
                 fatalError()
             }
         }
 
-        return (hue: hue, saturation: saturation, lightness: lightness, alpha: alpha)
+        return (hue: hue / 6, saturation: saturation, lightness: lightness, alpha: alpha)
+    }
+
+    public var luma: Float {
+        let (red, green, blue, _) = rgba
+        return (0.299 * red) + (0.587 * green) + (0.114 * blue)
     }
 }
