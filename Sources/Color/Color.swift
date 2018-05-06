@@ -1,9 +1,9 @@
 import Foundation
 
-// TODO: Extract to package (Graphics, Visual)
-
 // https://github.com/soffes/Color
 // https://gist.github.com/shaps80/cfb444e6bde593a63cb6e5bfcab852aa
+
+// TODO: Add ExpressibleByArrayLiteral
 
 /// Represents a color value.
 public struct Color {

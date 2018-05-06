@@ -44,7 +44,7 @@ public extension Color {
         } else {
             let delta = maxValue - minValue
 
-            saturation = lightness > 0.5 ? delta / (2 - maxValue - minValue) : d / (maxValue + minValue)
+            saturation = lightness > 0.5 ? delta / (2 - maxValue - minValue) : delta / (maxValue + minValue)
 
             switch maxValue {
             case red:
