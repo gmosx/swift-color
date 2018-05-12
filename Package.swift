@@ -9,6 +9,10 @@ let package = Package(
             name: "Color",
             targets: ["Color"]
         ),
+        .library(
+            name: "NamedColors",
+            targets: ["NamedColors"]
+        ),
     ],
     dependencies: [
     ],
@@ -19,6 +23,10 @@ let package = Package(
         ),
         .testTarget(
             name: "ColorTests",
+            dependencies: ["Color", "NamedColors"]
+        ),
+        .target(
+            name: "NamedColors",
             dependencies: ["Color"]
         ),
     ]

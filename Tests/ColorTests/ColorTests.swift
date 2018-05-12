@@ -1,9 +1,10 @@
 import XCTest
 @testable import Color
+import NamedColors
 
 class ColorTests: XCTestCase {
     func testRGBToHSL() {
-        let c = Color.purple
+        let c = NamedColors.purple
         
         let hsl = c.hsl
         
