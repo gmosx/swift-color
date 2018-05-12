@@ -27,10 +27,17 @@ class ColorTests: XCTestCase {
         let lighterPurple = purple.lighter(by: 0.1)
         let darkerPurple = purple.darker(by: 0.1)
 
-        print("****", purple, lighterPurple, darkerPurple)
+        XCTAssertEqual(purple.hexString, "#7f007f")
+        XCTAssertEqual(lighterPurple.hexString, "#8c008c")
+        XCTAssertEqual(darkerPurple.hexString, "#720072")
+
+        XCTAssert(lighterPurple.hsl.lightness > purple.hsl.lightness)
+        XCTAssert(darkerPurple.hsl.lightness < purple.hsl.lightness)
     }
 
     static var allTests = [
         ("testRGBToHSL", testRGBToHSL),
+        ("testHSLToRGB", testHSLToRGB),
+        ("testAdjustments", testAdjustments),
     ]
 }
