@@ -13,6 +13,15 @@ class ColorTests: XCTestCase {
         XCTAssertEqual(hsl.lightness, 0.25)
     }
 
+    func testHSLToRGB() {
+        let color = Color(hue: 300, saturation: 1, lightness: 0.25)
+        let purple = NamedColors.purple
+
+        XCTAssertEqual(color.red, purple.red, accuracy: 0.01)
+        XCTAssertEqual(color.green, purple.green, accuracy: 0.01)
+        XCTAssertEqual(color.blue, purple.blue, accuracy: 0.01)
+    }
+
     static var allTests = [
         ("testRGBToHSL", testRGBToHSL),
     ]

@@ -43,32 +43,19 @@ extension Color {
     }
 
     public var hex: Int {
-        get {
-            let red = Int(self.rgb.red   * 255) << 16
-            let green = Int(self.rgb.green * 255) << 8
-            let blue = Int(self.rgb.blue  * 255)
+        let red = Int(self.rgb.red   * 255) << 16
+        let green = Int(self.rgb.green * 255) << 8
+        let blue = Int(self.rgb.blue  * 255)
 
-            return red + green + blue
-        }
-        set {
-            self = Color(hex: newValue)
-        }
+        return red + green + blue
     }
 
-       public var hexString: String {
-           get {
-                return String(
-                    format: "#%02lx%02lx%02lx",
-                    Int(self.red * 255),
-                    Int(self.green * 255),
-                    Int(self.blue * 255))
-                }
-           set {
-               if let color = Color(hexString: newValue) {
-                   self = color
-               } else {
-                   fatalError("Invalid color hex-string")
-               }
-           }
-       }
+    public var hexString: String {
+        return String(
+            format: "#%02lx%02lx%02lx",
+            Int(self.red * 255),
+            Int(self.green * 255),
+            Int(self.blue * 255)
+        )
+    }
 }
