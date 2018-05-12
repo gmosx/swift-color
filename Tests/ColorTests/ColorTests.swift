@@ -22,6 +22,14 @@ class ColorTests: XCTestCase {
         XCTAssertEqual(color.blue, purple.blue, accuracy: 0.01)
     }
 
+    func testAdjustments() {
+        let purple = NamedColors.purple
+        let lighterPurple = purple.lighter(by: 0.1)
+        let darkerPurple = purple.darker(by: 0.1)
+
+        print("****", purple, lighterPurple, darkerPurple)
+    }
+
     static var allTests = [
         ("testRGBToHSL", testRGBToHSL),
     ]
