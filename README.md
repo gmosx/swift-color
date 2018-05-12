@@ -1,5 +1,7 @@
 # Color
 
+![Build status](https://travis-ci.org/reizu/swift-color.svg?branch=master)
+
 A color management library.
 
 ## License
